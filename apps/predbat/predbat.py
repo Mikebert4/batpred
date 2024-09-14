@@ -580,7 +580,7 @@ class PredBat(hass.Hass):
                                 rate_export += peak_premium_export
                             rate_import = min(rate_import, 95)  # Cap
                             rate_export = max(rate_export, 0)  # Cap
-                            rate_import = rate_import * 1.05  # Vat only on import
+                            rate_import = rate_import * 1.05 if rate_import>=0 else rate_import  # Vat only on import, and only when cost positive
 
                             item = {}
                             item["from"] = time_date_start.strftime(TIME_FORMAT)
